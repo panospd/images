@@ -2,7 +2,11 @@
   <div class="ui secondary pointing menu">
     <a href="/" class="active item">Image Storage</a>
     <div class="right menu">
-      <div v-if="isLoggedIn">Galleries upload logout</div>
+      <div class="horizontal" v-if="isLoggedIn">
+        <a class="item">Galleries</a>
+        <a class="item">Upload</a>
+        <a class="item" @click="logout">Logout</a>
+      </div>
       <div v-else>
         <a href="#" class="ui item" @click="login">Log in</a>
       </div>
@@ -16,6 +20,13 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   name: "AppHeader",
   computed: mapGetters(["isLoggedIn"]),
-  methods: mapActions(["login"])
+  methods: mapActions(["login", "logout"])
 };
 </script>
+
+<style scoped>
+.horizontal {
+  display: flex;
+  flex-direction: row;
+}
+</style>
